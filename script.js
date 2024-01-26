@@ -22,9 +22,9 @@ export const currencies = {
 
 if (localStorage.getItem("currency")) {
   CURRENCY = localStorage.getItem("currency")
-  currencySelect.value = CURRENCY
-  applyCurrency()
 }
+currencySelect.value = CURRENCY
+applyCurrency()
 
 function applyCurrency() {
   const currencySpans = document.querySelectorAll(".currency-span")

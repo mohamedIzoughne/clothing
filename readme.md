@@ -44,6 +44,9 @@
 
 <!-- - Contact us page -->
 
+the pagination buttons should change their places
+CHANGE: Showing - 10 to 18 Of Total 36
+
 - remove unnecessary css styles
 - remove all unnecessary comments
 
