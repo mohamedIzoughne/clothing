@@ -4,109 +4,6 @@ getProductsFromJson().then((prods) => {
   applyOnProducts(prods)
 })
 
-// applyToNewArrival()
-
-// function createProduct(product, attributes) {
-//   const prodElement = document.createElement("div")
-//   const addCartButton = createAnchorTag(
-//     `<i class="fa fa-cart-plus"></i>`,
-//     "add-cart",
-//     {
-//       href: "#",
-//       "data-tooltip": "Add To Cart",
-//       "data-placement": "left",
-//     },
-//     product
-//   )
-//   prodElement.className = "product-item"
-
-//   prodElement.innerHTML = `<div class="single-product">
-//     <div class="product-img">
-//     ${
-//       product.new
-//         ? `<div class="product-label">
-//     <div class="new">New</div>
-//   </div>`
-//         : ""
-//     }
-//       <div class="single-prodcut-img product-overlay pos-rltv">
-//         <a href="single-product.html">
-//           <img
-//             alt=""
-//             src=${product.imageUrl}
-//             class="primary-image"
-//           />
-//         </a>
-//       </div>
-//       <div class="product-icon socile-icon-tooltip text-center">
-//         <ul>
-//           <li class="add-cart-item">
-//           </li>
-//           <li>
-//             <a
-//               href="#"
-//               data-tooltip="Quick View"
-//               class="q-view"
-//               data-bs-toggle="modal"
-//               data-bs-target=".modal"
-//               ><i class="fa fa-eye"></i
-//             ></a>
-//           </li>
-//         </ul>
-//       </div>
-//     </div>
-//     <div class="product-text">
-//       <div class="prodcut-name">
-//         <a href="single-product.html">${product.name}</a>
-//       </div>
-//       <div class="prodcut-ratting-price">
-//         <div class="prodcut-price">
-//           <div class="new-price"><span class="currency-span"></span>${
-//             product.price
-//           }</div>
-//         </div>
-//       </div>
-//     </div>
-//   </div>`
-
-//   prodElement.querySelector(".add-cart-item").appendChild(addCartButton)
-
-//   const quickView = prodElement.querySelector(".q-view")
-
-//   quickView.addEventListener("click", () => addToModal(product))
-//   prodElement.addEventListener("click", () => addToLocalStorage(product))
-
-//   return prodElement
-// }
-
-// function applyToNewArrival(prods) {
-//   const productsListEle = document.querySelector(".total-new-arrival")
-//   prods = prods.filter((prod) => prod.new)
-
-//   if (prods.length > 4) {
-//     prods = prods.slice(0, 4)
-//   }
-
-//   prods.forEach((item) => {
-//     productsListEle.appendChild(createProduct(item))
-//   })
-// }
-
-// function createAnchorTag(inner, className, attributes, prod) {
-//   const addCartButton = document.createElement("a")
-//   addCartButton.className = className
-//   addCartButton.innerHTML = inner
-//   for (const attr in attributes) {
-//     addCartButton.setAttribute(attr, attributes[attr])
-//   }
-
-//   addCartButton.addEventListener("click", () => {
-//     addToCart(prod)
-//   })
-
-//   return addCartButton
-// }
-
 function addToModal(product) {
   const modalContentEle = document.querySelector(".modal-content")
 
@@ -317,6 +214,7 @@ function applyOnProducts(products) {
   const quickViewButtons = document.querySelectorAll(
     '[data-tooltip="Quick View"]'
   )
+  const productItems = document.querySelectorAll(".product-item")
 
   addToCartButtons.forEach((btn) => {
     btn.addEventListener("click", (e) => {
@@ -326,13 +224,23 @@ function applyOnProducts(products) {
       addToCart(foundProduct)
     })
   })
+
   quickViewButtons.forEach((btn) => {
     btn.addEventListener("click", (e) => {
       const id = +e.currentTarget.dataset.id
       const foundProduct = products.find((prod) => prod.id === id)
 
-      addToLocalStorage(foundProduct)
       addToModal(foundProduct)
+    })
+  })
+
+  productItems.forEach((item) => {
+    item.addEventListener("click", (e) => {
+      const id = +e.currentTarget.dataset.id
+      console.log("Hello world")
+      const foundProduct = products.find((prod) => prod.id === id)
+
+      addToLocalStorage(foundProduct)
     })
   })
 }

@@ -23,6 +23,7 @@ export const currencies = {
 if (localStorage.getItem("currency")) {
   CURRENCY = localStorage.getItem("currency")
 }
+
 currencySelect.value = CURRENCY
 applyCurrency()
 
