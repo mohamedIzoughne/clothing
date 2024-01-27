@@ -54,6 +54,12 @@ export function addToLocalStorage(product) {
 if (localStorage.getItem("cart")) {
   cart = JSON.parse(localStorage.getItem("cart"))
 
+  if (cart.totalPrice < 0) {
+    cart.products = []
+    cart.totalPrice = 0
+    localStorage.setItem(JSON.stringify(cart))
+  }
+
   applyCart()
 }
 
