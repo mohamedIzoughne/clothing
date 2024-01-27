@@ -64,8 +64,7 @@ export function addCartToLocalStorage() {
 export function addToCart(product, quantity = 1) {
   const { id } = product
   const foundProdIndex = cart.products.findIndex((prod) => prod.id === id)
-
-  cart.totalPrice += product.price
+  cart.totalPrice += product.price * quantity
 
   if (foundProdIndex >= 0) {
     cart.products[foundProdIndex].quantity =

@@ -176,10 +176,10 @@ const applySingleProduct = () => {
   const quantityInput = productArea.querySelector(".cart-plus-minus-box")
   const addToCartButton = productArea.querySelector(".add-cart")
   incrementButton.addEventListener("click", () => {
-    incrementQuantity(product.id, quantityInput)
+    incrementQuantity(quantityInput)
   })
   decrementButton.addEventListener("click", () => {
-    decrementQuantity(product.id, quantityInput)
+    decrementQuantity(quantityInput)
   })
   addToCartButton.addEventListener("click", () => {
     addToCart(product, +quantityInput.value)
@@ -195,12 +195,12 @@ const applySingleProduct = () => {
   })
 }
 
-function incrementQuantity(id, input) {
+function incrementQuantity(input) {
   const newQuantity = +input.value + 1
   input.value = newQuantity
 }
 
-function decrementQuantity(id, input) {
+function decrementQuantity(input) {
   const oldQuantity = input.value
   if (oldQuantity > 0) {
     const newQuantity = +input.value - 1
